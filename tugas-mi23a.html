@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas-MI23A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        position: relative;
+        height: 100vh;
+        margin: 0;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("img/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.1;
+        z-index: -1;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 40px;
+      }
+
+      .item {
+        background-color: #34d399;
+        color: white;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 20px;
+        text-align: center;
+        font-weight: bold;
+        cursor: grab;
+        transition: background-color 0.3s;
+      }
+
+      .item.dragging {
+        opacity: 0.5;
+      }
+
+      .item.wrong {
+        background-color: #ef4444;
+        color: white;
+      }
+
+      .dropzone {
+        background-color: #7dd3fc;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 20px;
+        text-align: center;
+        min-height: 70px;
+        border: 2px dashed white;
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .dropzone.hover {
+        background-color: #0284c7;
+      }
+
+      .dropzone.correct {
+        background-color: #34d399;
+        color: white;
+      }
+
+      .error {
+        border-color: red !important;
+        background-color: #ffe5e5;
+      }
+
+      .success {
+        border-color: green !important;
+        background-color: #eaffea;
+        box-shadow: #eaffea;
+      }
+    </style>
+  </head>
+
+  <body class="h-screen bg-gray-200">
+    <div class="content">
+      <h1 class="text-4xl font-bold">PEMAHAMAN TEORI - WEB PROGRAMMING</h1>
+    </div>
+    <div class="flex -mt-2">
+      <div class="w-full">
+        <div
+          class="mt-4 pt-12 px-12 bg-white rounded-3xl p-4 ml-12 mr-2 shadow-lg"
+        >
+          <div
+            class="px-4 bg-amber-200 text-xl w-60 py-2 text-center rounded-xl"
+          >
+            SOAL PERTAMA
+          </div>
+          <div class="mt-4">Tentukan fungsi yang tepat di bawah ini 🗂️</div>
+          <div class="mt-4">
+            <div class="flex gap-24">
+              <div class="left">
+                <div
+                  class="bg-emerald-300 p-4 w-44 text-white font-bold rounded-3xl text-center mb-16 item"
+                  draggable="true"
+                  id="migrations"
+                >
+                  Migrations
+                </div>
+                <div
+                  class="bg-emerald-300 p-4 w-44 text-white font-bold rounded-3xl text-center mb-16 item"
+                  draggable="true"
+                  id="models"
+                >
+                  Models
+                </div>
+                <div
+                  class="bg-emerald-300 p-4 w-44 text-white font-bold rounded-3xl text-center mb-16 item"
+                  draggable="true"
+                  id="controller"
+                >
+                  Controller
+                </div>
+                <div
+                  class="bg-emerald-300 p-4 w-44 text-white font-bold rounded-3xl text-center mb-16 item"
+                  draggable="true"
+                  id="views"
+                >
+                  Views
+                </div>
+                <div
+                  class="bg-emerald-300 p-4 w-44 text-white font-bold rounded-3xl text-center mb-16 item"
+                  draggable="true"
+                  id="routes"
+                >
+                  Routes
+                </div>
+              </div>
+              <div class="right">
+                <div
+                  class="bg-sky-300 p-4 w-[500px] text-white font-bold rounded-3xl text-center mb-3 dropzone"
+                  data-answer="controller"
+                >
+                  Mengatur logika aplikasi, Menjembatani antara request
+                  pengguna, model, dan view, Memproses data dari model dan
+                  mengirimkannya ke view
+                </div>
+                <div
+                  class="bg-sky-300 p-4 w-[500px] text-white font-bold rounded-3xl text-center mb-3 dropzone"
+                  data-answer="views"
+                >
+                  Menyediakan antarmuka (UI), Berisi HTML, CSS, dan logika
+                  sederhana untuk menampilkan data, Biasanya menggunakan Blade
+                  templating engine untuk efisiensi
+                </div>
+                <div
+                  class="bg-sky-300 p-4 w-[500px] text-white font-bold rounded-3xl text-center mb-3 dropzone"
+                  data-answer="migrations"
+                >
+                  Berfungsi untuk mengelola struktur database, Membuat,
+                  mengubah, atau menghapus tabel dengan cara terorganisir.
+                </div>
+                <div
+                  class="bg-sky-300 p-4 w-[500px] text-white font-bold rounded-3xl text-center mb-3 dropzone"
+                  data-answer="routes"
+                >
+                  Mengatur jalur (endpoint) URL yang menghubungkan request
+                  pengguna ke controller, Bisa berupa route GET, POST, PUT,
+                  DELETE, atau resource
+                </div>
+                <div
+                  class="bg-sky-300 p-4 w-[500px] text-white font-bold rounded-3xl text-center mb-3 dropzone"
+                  data-answer="models"
+                >
+                  Merepresentasikan tabel di database dalam bentuk objek serta
+                  menghubungkan data atau relasi.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <div
+          class="mt-4 pt-12 px-12 bg-white rounded-3xl p-4 ml-4 mr-12 shadow-lg"
+        >
+          <div
+            class="px-4 bg-amber-200 text-xl w-60 py-2 text-center rounded-xl"
+          >
+            SOAL KEDUA
+          </div>
+          <div class="mt-4">
+            Ketik kode untuk membuat controller yang sudah terdapat function
+            yang siap digunakan 🧑‍💻, buat controller dengan nama CobaController
+          </div>
+          <div class="mb-5 mt-2">
+            <input
+              type="text"
+              id="makeController"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Masukkan kode disini..."
+            />
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <div
+            class="mt-4 pt-12 px-12 bg-white rounded-3xl p-4 ml-4 mr-12 shadow-lg"
+          >
+            <div
+              class="px-4 bg-amber-200 text-xl w-60 py-2 text-center rounded-xl"
+            >
+              SOAL KETIGA
+            </div>
+            <div class="mt-4">
+              Tentukan fungsi yang tepat di bawah ini, untuk perbedaan migrate
+              dan migrate fresh 🗂️
+            </div>
+            <div class="mt-4">
+              <div class="flex gap-24">
+                <div class="left">
+                  <div
+                    class="bg-emerald-300 p-4 w-54 text-white font-bold rounded-3xl text-center mb-16"
+                  >
+                    <input
+                      type="text"
+                      id="migrateInput"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Jawaban..."
+                    />
+                  </div>
+                  <div
+                    class="bg-emerald-300 p-4 w-54 text-white font-bold rounded-3xl text-center mb-16"
+                  >
+                    <input
+                      type="text"
+                      id="migrateFreshInput"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Jawaban..."
+                    />
+                  </div>
+                </div>
+                <div class="right">
+                  <div
+                    class="w-[500px] bg-sky-300 p-4 text-white font-bold rounded-3xl text-center mb-3"
+                  >
+                    <span>migrate</span>
+                    <br />
+                    Fungsi untuk menjalankan migrasi database sesuai file
+                    migration yang ada <br />
+                    di database
+                  </div>
+                  <div
+                    class="w-[500px] bg-sky-300 p-4 text-white font-bold rounded-3xl text-center mb-3"
+                  >
+                    <span>migrate fresh</span>
+                    <br />
+                    Fungsi untuk menghapus seluruh tabel dan melakukan migrasi
+                    dari awal
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full pt-12 pb-12 bg-white text-center shadow-lg mt-16 mb-5 rounded-3xl"
+    >
+      <div class="text-xl font-bold">
+        Total Skor: <span id="score">30</span>
+      </div>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll(".item");
+      const dropzones = document.querySelectorAll(".dropzone");
+      const makeControllerInput = document.getElementById("makeController");
+      const migrateInput = document.getElementById("migrateInput");
+      const migrateFreshInput = document.getElementById("migrateFreshInput");
+      const scoreElement = document.getElementById("score");
+
+      let score = 30;
+
+      // Function to update score
+      function updateScore(amount) {
+        score += amount;
+        if (score < 0) score = 0;
+        scoreElement.textContent = score;
+      }
+
+      items.forEach((item) => {
+        item.addEventListener("dragstart", (e) => {
+          item.classList.add("dragging");
+        });
+
+        item.addEventListener("dragend", (e) => {
+          item.classList.remove("dragging");
+        });
+      });
+
+      dropzones.forEach((dropzone) => {
+        dropzone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          dropzone.classList.add("hover");
+        });
+
+        dropzone.addEventListener("dragleave", (e) => {
+          dropzone.classList.remove("hover");
+        });
+
+        dropzone.addEventListener("drop", (e) => {
+          dropzone.classList.remove("hover");
+          const draggedItem = document.querySelector(".dragging");
+          const correctAnswer = dropzone.dataset.answer;
+          const droppedItemId = draggedItem.id;
+
+          if (correctAnswer === droppedItemId) {
+            dropzone.classList.add("correct");
+            draggedItem.classList.add("correct");
+            // updateScore(10);  // Increase score when correct
+          } else {
+            dropzone.classList.add("wrong");
+            draggedItem.classList.add("wrong");
+            updateScore(-2); // Decrease score when wrong
+          }
+        });
+      });
+
+      makeControllerInput.addEventListener("blur", () => {
+        if (
+          makeControllerInput.value ===
+          "php artisan make:controller CobaController --resource"
+        ) {
+          makeControllerInput.classList.add("success");
+          // updateScore(10);
+        } else {
+          makeControllerInput.classList.add("error");
+          updateScore(-10);
+        }
+      });
+
+      migrateInput.addEventListener("blur", () => {
+        if (migrateInput.value === "migrate") {
+          migrateInput.classList.add("success");
+          // updateScore(10);
+        } else {
+          migrateInput.classList.add("error");
+          updateScore(-5);
+        }
+      });
+
+      migrateFreshInput.addEventListener("blur", () => {
+        if (migrateFreshInput.value === "migrate:fresh") {
+          migrateFreshInput.classList.add("success");
+          // updateScore(10);
+        } else {
+          migrateFreshInput.classList.add("error");
+          updateScore(-2);
+        }
+      });
+    </script>
+  </body>
+</html>
